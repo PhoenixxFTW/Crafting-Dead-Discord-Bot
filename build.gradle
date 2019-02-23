@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+group 'CraftingDeadBot'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    // https://github.com/google/gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    //https://github.com/stleary/JSON-java
+    compile 'org.json:json:20180813'
+
+    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+
+    //https://github.com/gapperdan/hello-jackson-objectmapper
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
+    
+    // https://github.com/DV8FromTheWorld/JDA
+    compile 'net.dv8tion:JDA:3.8.0_427'
+
+    //https://github.com/JDA-Applications/JDA-Utilities
+    compile 'com.jagrosh:jda-utilities:2.1.4'
+}
