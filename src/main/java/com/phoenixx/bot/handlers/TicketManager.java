@@ -3,7 +3,6 @@ package com.phoenixx.bot.handlers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.phoenixx.Main;
 import com.phoenixx.bot.objects.MessageObject;
 import com.phoenixx.bot.objects.Ticket;
 import com.phoenixx.bot.utils.References;
@@ -58,9 +57,13 @@ public class TicketManager
 
             Date dateCreated = new Date();
 
-            Ticket newTicket = new Ticket(ticketOwner, ticketSubject, dateCreated, createTicketChannel(event, ticketSubject), currentTickets);
+            Ticket newTicket = new Ticket(ticketOwner, ticketSubject, dateCreated, createTicketChannel(event, ticketSubject), ConfigHandler.amountOfTicketsCreated);
             allTickets.add(newTicket);
             createTicketFile(newTicket);
+
+            ConfigHandler.amountOfTicketsCreated++;
+            ConfigHandler.saveProp(ConfigHandler.botProperties, ConfigHandler.amountOfTicketsCreated, "amountOfTicketsCreated");
+            ConfigHandler.saveConfig(ConfigHandler.dir, ConfigHandler.botConfigFile, ConfigHandler.botProperties, ConfigHandler.botConfigComment);
         } else {
             event.getChannel().sendMessage("Sorry " + event.getAuthor().getAsMention() + "! You can only have up to " + ConfigHandler.maxTickets + " tickets. Please close an existing ticket by doing ``>close`` in the ticket channel").queue();
 
@@ -82,7 +85,7 @@ public class TicketManager
 
         Member ticketOwner = event.getMember();
 
-        Channel ticketChannel = event.getGuild().getController().createTextChannel("ticket-"+ Main.getTicketManager().getCurrentAmountTickets())
+        Channel ticketChannel = event.getGuild().getController().createTextChannel("ticket-" + References.amountOfTicketsMade+1)
                 .setParent(event.getJDA().getCategoryById(ConfigHandler.supportCategoryID))
                 .addPermissionOverride(ticketOwner, allowedPerms, deniedPerms)
                 .addPermissionOverride(publicRole, deniedPerms, allowedPerms)
@@ -241,6 +244,7 @@ public class TicketManager
                 }
             }
         }
+        References.amountOfTicketsMade = ConfigHandler.amountOfTicketsCreated;
     }
 
     private void parseTicketFileData(File givenTicketFile, Guild givenGuild)

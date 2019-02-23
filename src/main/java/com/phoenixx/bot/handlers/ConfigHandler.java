@@ -32,6 +32,8 @@ public class ConfigHandler
 
     public static int maxTickets = 3;
 
+    public static int amountOfTicketsCreated = 0;
+
     public static String botConfigComment = "~Bot Configuration File~";
 
     public ConfigHandler()
@@ -48,6 +50,7 @@ public class ConfigHandler
         logChannelID = (String) loadProp(botProperties, logChannelID, "null", "logChannelID");
 
         maxTickets = (Integer) loadProp(botProperties, maxTickets, 3, "maxTickets");
+        amountOfTicketsCreated = (Integer) loadProp(botProperties, amountOfTicketsCreated, 0, "amountOfTicketsCreated");
 
         /** Save bot config */
         saveConfig(dir, botConfigFile, botProperties, botConfigComment);
