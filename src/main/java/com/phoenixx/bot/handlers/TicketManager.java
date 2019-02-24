@@ -57,7 +57,7 @@ public class TicketManager
 
             Date dateCreated = new Date();
 
-            Ticket newTicket = new Ticket(ticketOwner, ticketSubject, dateCreated, createTicketChannel(event, ticketSubject), ConfigHandler.amountOfTicketsCreated);
+            Ticket newTicket = new Ticket(ticketOwner, ticketSubject, dateCreated, createTicketChannel(event, ticketSubject), References.amountOfTicketsMade);
             allTickets.add(newTicket);
             createTicketFile(newTicket);
 
@@ -85,7 +85,7 @@ public class TicketManager
 
         Member ticketOwner = event.getMember();
 
-        Channel ticketChannel = event.getGuild().getController().createTextChannel("ticket-" + References.amountOfTicketsMade+1)
+        Channel ticketChannel = event.getGuild().getController().createTextChannel("ticket-" + References.amountOfTicketsMade)
                 .setParent(event.getJDA().getCategoryById(ConfigHandler.supportCategoryID))
                 .addPermissionOverride(ticketOwner, allowedPerms, deniedPerms)
                 .addPermissionOverride(publicRole, deniedPerms, allowedPerms)

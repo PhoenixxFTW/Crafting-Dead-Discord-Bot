@@ -58,11 +58,7 @@ public class MessageListener extends ListenerAdapter
          * Notes: Remember, the json data needs to be wrapped in [ ] so that it becomes an array
          */
 
-        //FIXME: You need to fix the check where the bot checks to see if the message was sent in the ticket channel or not
-        //FIXME: Make the writer type out '[]' into the new file before putting anything else in
-        // Handles channel text
-
-        if(!message.getContentDisplay().startsWith(ConfigHandler.botPrefix) && messageChannel.getName().startsWith("ticket") && TicketManager.isChannelATicketChannel(messageChannel) && TicketManager.getTicketFromChannel(messageChannel) != null && !event.getAuthor().isBot()) {
+        if(!message.getContentDisplay().startsWith(ConfigHandler.botPrefix) && messageChannel.getName().startsWith("ticket") && TicketManager.isChannelATicketChannel(messageChannel) && TicketManager.getTicketFromChannel(messageChannel) != null) {
             TicketManager.handleMessageInTicketChannel(event);
         }
     }

@@ -35,8 +35,6 @@ public class PingCommand implements Command
         return Color.red;
     }
 
-
-
     public boolean called(String[] args, MessageReceivedEvent event) {
         return false;
     }

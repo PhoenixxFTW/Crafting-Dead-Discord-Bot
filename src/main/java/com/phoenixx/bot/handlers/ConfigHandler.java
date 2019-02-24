@@ -110,7 +110,6 @@ public class ConfigHandler
     public static void saveProp(Properties p, Object o, String pname)
     {
         p.setProperty(pname, toStringObject(o));
-        System.out.println("UPDATED PROP: " + pname + " TO " + toStringObject(o));
     }
 
     private static String toStringObject(Object o)

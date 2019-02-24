@@ -83,7 +83,7 @@ public class TicketCommand implements Command
 
             waiter.waitForEvent(MessageReceivedEvent.class,
                     // make sure it's by the same user, and in the same channel
-                    e -> (e.getAuthor().equals(event.getAuthor()) && e.getChannel().equals(event.getChannel())) && e.getMessage().getContentDisplay().equalsIgnoreCase(ConfigHandler.botPrefix+"reset"),
+                    e -> (e.getAuthor().equals(event.getAuthor()) && e.getChannel().equals(event.getChannel())) && e.getMessage().getContentRaw().equalsIgnoreCase(ConfigHandler.botPrefix+"ticket reset"),
                     // respond, inserting the name they listed into the response
                     e -> Main.getTicketManager().clearAll(),
                     // if the user takes more than a minute, time out

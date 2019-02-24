@@ -26,7 +26,7 @@ public class StatsCommand implements Command
         embedBuilder.setColor(References.colorTheme);
         embedBuilder.setDescription("Stats about the Crafting Dead Bot");
         embedBuilder.addField("Server members", String.valueOf(event.getGuild().getMembers().size()), false);
-        embedBuilder.addField("Tickets created since last restart", String.valueOf(References.amountOfTicketsMade), false);
+        embedBuilder.addField("Amount of tickets created", String.valueOf(References.amountOfTicketsMade), false);
         embedBuilder.addField("Amount of tickets being processed", String.valueOf(TicketManager.currentTickets), false);
         embedBuilder.addField("Bot Version", "1.0", false);
         embedBuilder.addField("Java version", System.getProperty("java.version"), false);
